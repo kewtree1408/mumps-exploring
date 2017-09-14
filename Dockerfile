@@ -14,12 +14,14 @@ WORKDIR /tmp/gtm
 RUN wget http://sourceforge.net/projects/fis-gtm/files/GT.M%20Installer/v0.13/gtminstall \
     && chmod +x gtminstall \
     && sudo ./gtminstall --utf8 default \
-    && echo "source /usr/lib/fis-gtm/V6.3-001A_x86_64/gtmprofile" >> /root/.bashrc
+    && echo "source /usr/lib/fis-gtm/V6.3-0022_x86_64/gtmprofile" >> /root/.bashrc
 
 WORKDIR /var/www
 RUN git clone https://github.com/lparenteau/DataBallet.git \
-    && git clone https://github.com/kewtree1408/mumps-exploring/data-ballet.conf \
-    && git clone https://github.com/kewtree1408/mumps-exploring/static \
-    && ./script/databallet.sh start data-ballet.conf
+    && wget https://raw.githubusercontent.com/kewtree1408/mumps-exploring/master/data-ballet.conf \ 
+    && mkdir static && cd static \
+    && wget https://raw.githubusercontent.com/kewtree1408/mumps-exploring/master/static/index.html \
+    && cd /var/www \
+    && /var/www/DataBallet/script/databallet.sh start data-ballet.conf
 
-CMD [ "./script/databallet.sh", "start", "data-ballet.conf" ]
+CMD [ "sleep", "365d" ]

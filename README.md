@@ -4,7 +4,7 @@ docker-compose up --build -d
 ```
 
 ```
-docker exec -it mumps_mumps_1 bash
+docker exec -it mumpsexploring_mumps bash
 ```
 
 ```
